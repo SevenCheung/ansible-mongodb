@@ -1,0 +1,4 @@
+{% for key in shardservers.keys() %}
+db.runCommand({addshard: "{{ key }}/{{shardservers[key][0]}}:{{mongod_port}},{{shardservers[key][1]}}:{{mongod_port}},{{shardservers[key][2]}}:{{mongod_port}}"})
+{% endfor %}
+printjson(rs.status())

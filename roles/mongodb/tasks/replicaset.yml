@@ -1,0 +1,10 @@
+---
+- name: Copy mongod replicaset initialize file
+  template: src=replicaset_conf.j2 dest=/tmp/replicaset_conf.js
+  sudo: yes
+
+- name: Pause for a while
+  pause: seconds=20
+
+- name: Initialize the replicaset 
+  shell: /usr/bin/mongo 127.0.0.1:{{ mongod_port }} /tmp/replicaset_conf.js

@@ -1,0 +1,20 @@
+var cfg =
+{
+    "_id" : "{{ replicaset }}",
+    "version" : 1,
+    "members" : [
+        {
+             "_id" : 0,
+             "host" : "{{ repservers[0] }}:{{ mongod_port }}"
+        },
+        {
+             "_id" : 1,
+             "host" : "{{ repservers[1] }}:{{ mongod_port }}"
+        },
+        {
+             "_id" : 2,
+             "host" : "{{ repservers[2] }}:{{ mongod_port }}"
+        }
+    ]
+}
+rs.initiate(cfg)

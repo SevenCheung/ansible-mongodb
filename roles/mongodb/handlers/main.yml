@@ -1,0 +1,13 @@
+---
+# handlers file for mongodb
+- name: restart mongod
+  service: name=mongod state=restarted
+  sudo: yes
+- name: start mongos
+  supervisorctl: name=mongodb-mongos state=restarted
+  sudo: yes
+- name: start mongoc
+  supervisorctl: name=mongodb-configsrv state=restarted
+  sudo: yes
+
+

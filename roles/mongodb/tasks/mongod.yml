@@ -1,0 +1,14 @@
+---
+- name: Create log directory
+  file: path=/data/log/mongodb owner=mongodb group=mongodb state=directory
+  sudo: yes
+
+- name: Create configdb directory
+  file: path=/data/mongodb owner=mongodb group=mongodb state=directory
+  sudo: yes
+
+- name: Create mongod configuration file
+  template: src=mongod.conf.j2 dest=/etc/mongod.conf
+  sudo: yes
+  notify:
+    - restart mongod  

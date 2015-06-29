@@ -1,0 +1,16 @@
+---
+# tasks file for mongodb
+- include: mongoc.yml
+  when: mongodb_install_mode == "mongoc"
+
+- include: mongos.yml
+  when: mongodb_install_mode == "mongos"
+
+- include: mongod.yml
+  when: mongodb_install_mode == "mongod"
+
+- include: replicaset.yml
+  when: mongodb_install_mode == "replicaset"
+
+- include: sharding.yml
+  when: mongodb_install_mode == "sharding"

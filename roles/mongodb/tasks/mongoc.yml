@@ -1,0 +1,16 @@
+---
+- include: supervisor.yml
+
+- name: Create log directory
+  file: path=/data/log/mongodb owner=mongodb group=mongodb state=directory
+  sudo: yes
+
+- name: Create configdb directory
+  file: path=/data/configdb owner=mongodb group=mongodb state=directory
+  sudo: yes
+
+- name: Create configserver supervisor configuration file
+  copy: src=../files/mongodb-configsrv.conf dest=/etc/supervisor/conf.d/mongodb-configsrv.conf
+  sudo: yes
+  notify: 
+    - start mongoc

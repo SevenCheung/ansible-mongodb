@@ -1,0 +1,25 @@
+---
+- hosts: mongod
+  sudo: yes
+  roles:
+    - { role: mongodb, mongodb_install_mode: "mongod" }
+
+- hosts: configsrv
+  sudo: yes
+  roles:
+    - { role: mongodb, mongodb_install_mode: "mongoc" }
+
+- hosts: mongos 
+  sudo: yes
+  roles:
+    - { role: mongodb, mongodb_install_mode: "mongos" }
+
+- hosts: replication
+  sudo: yes
+  roles:
+    - { role: mongodb, mongodb_install_mode: "replicaset" }
+
+- hosts: sharding
+  sudo: yes
+  roles:
+    - { role: mongodb, mongodb_install_mode: "sharding" }

@@ -1,0 +1,19 @@
+---
+- include: supervisor.yml
+
+- name: Create log directory
+  file: path=/data/log/mongodb owner=mongodb group=mongodb state=directory
+  sudo: yes
+
+- name: Create mongos configuration file
+  copy: content="{{configsrv_ip}}" dest=/etc/mongos.conf mode=0644
+  sudo: yes
+
+- name: Create mongos supervisor configuration file
+  copy: src=../files/mongodb-mongos.conf dest=/etc/supervisor/conf.d/mongodb-mongos.conf
+  sudo: yes
+  notify: 
+    - start mongos
+
+
+

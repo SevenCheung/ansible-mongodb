@@ -1,0 +1,4 @@
+---
+# vars file for mongodb
+mongos_port: "27017"
+mongod_port: "27018"
